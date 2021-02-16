@@ -51,7 +51,8 @@ export function registrationFetchData(newUser) {
   // Post Body Here
   const postRequest = {
     method: 'POST',
-    name: newUser.name,
+    firstName: newUser.firstName,
+    lastName: newUser.lastName,
     email: newUser.email,
     password: newUser.password,
     passwordConfirm: newUser.passwordConfirm,
@@ -68,16 +69,16 @@ export function registrationFetchData(newUser) {
    */
     dispatch(registrationRequested());
     // POST DATA to API HEre
-    await axios.post('https:///register', postRequest)
+    await axios.post('http://localhost:9500/signup', postRequest)
       .then((response) => {
         dispatch(registrationIsLoading(false));
         // Get Reponse
         const apiResponse = response.data;
         // If response is not 200
-        if (apiResponse.status !== 200) {
+        if (response.status !== 201) {
           dispatch(registrationHasErrored(true));
           dispatch(registrationErrorMessage(apiResponse.message));
-        } else if (apiResponse.status === 200) {
+        } else if (response.status === 201) {
         // Dispatch User Authenticated Action if succesful
           return dispatch(registrationSuccess(true));
         }

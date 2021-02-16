@@ -43,7 +43,8 @@ class Register extends Component {
   onSubmit(event) {
     event.preventDefault();
     const newUser = {
-      name: this.name.value,
+      firstName: this.firstName.value,
+      lastName: this.lastName.value,
       email: this.email.value,
       password: this.password.value,
       passwordConfirm: this.passwordConfirm.value,
@@ -85,12 +86,21 @@ class Register extends Component {
           <div className="row">
             <div className="col-lg-12">
               <form className="form-signin" onSubmit={this.onSubmit}>
-                <div className="form-group">
+                <div className="form-group">{/*First Name*/}
                   <input
-                    ref={(input) => { this.name = input; }}
+                    ref={(input) => { this.firstName = input; }}
                     type="name"
-                    name="name"
-                    placeholder="Full Name"
+                    firstName="firstName"
+                    placeholder="First Name"
+                    className="form-control"
+                  />
+                </div>
+                <div className="form-group">{/*Last Name*/}
+                  <input
+                    ref={(input) => { this.lastName = input; }}
+                    type="name"
+                    lastName="lastName"
+                    placeholder="Last Name"
                     className="form-control"
                   />
                 </div>

@@ -71,13 +71,13 @@ export function loginFetchData(loginUser) {
     // Reset all Login Dispatch Actions
     dispatch(loginRequested());
     // Get Data From API HEre
-    await axios.post('https:///login', postRequest)
+    await axios.post('http://localhost:9500/login', postRequest)
       .then((response) => {
         dispatch(loginIsLoading(false));
         // Get Reponse
         const apiResponse = response.data;
         // If response is not 200
-        if (apiResponse.status !== 200) {
+        if (response.status !== 200) {
           dispatch(loginHasErrored(true));
           dispatch(loginErrorMessage(apiResponse.message));
           return;
